@@ -2,7 +2,9 @@ package com.melcam.springbootweb.controllers;
 
 import com.melcam.springbootweb.model.User;
 import com.melcam.springbootweb.model.dto.ParamDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -32,6 +34,9 @@ public class PathVariableController {
     @Value("#{${config.valuesMap}.price}")
     private Integer price;
 
+    @Autowired
+    private Environment environment;
+
     @GetMapping("/paz/{message}")
     public ParamDTO baz(@PathVariable String message) {
         ParamDTO param = new ParamDTO();
@@ -59,6 +64,8 @@ public class PathVariableController {
         json.put("username", username);
         json.put("code", code);
         json.put("message", message);
+        json.put("message2", environment.getProperty("config.message"));
+        json.put("code2",environment.getProperty("config.code", Long.class));
         json.put("listOfValues", listOfValues);
         json.put("valueList", valueList);
         json.put("valueString", valueString);
