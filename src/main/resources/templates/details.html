@@ -6,13 +6,21 @@
     <title th:text="${title}"></title>
 </head>
 <body>
-    <h1 th:text="${title}"></h1>
-    <ul>
-        <li th:text="${user.name}"></li>
-        <li th:text="${user.lastname}"></li>
-<!--        <li th:if="${user.email!=null}" th:text="${user.email}"></li>-->
-        <li th:if="${user.email}" th:text="${user.email}"></li>
-        <li th:if="${user.email==null}" th:text="${'no tiene email'}"></li>
-    </ul>
+<h1 th:text="${title}"></h1>
+<ul>
+    <li th:text="${user.name}"></li>
+    <li th:text="${user.lastname}"></li>
+    <!--        <li th:if="${user.email!=null}" th:text="${user.email}"></li>-->
+    <li th:if="${user.email}" th:text="${user.email}"></li>
+    <li th:if="${user.email==null}" th:text="${'no tiene email'}"></li>
+</ul>
+<a th:href="@{/list}">ver listado</a><br>
+<!--    <a th:href="@{'/api/params/foo?message='+${title}}">ver mensaje</a><br>-->
+<!--    <a th:href="@{/api/params/foo?message=Hola, segunda forma}">ver mensaje</a><br>-->
+<a th:href="@{/api/params/foo(message='Hola, tercera manera demostrar')}">ver mensaje</a><br>
+<a th:href="@{/api/params/bar(text='Hola, mostrar bar',code=3232)}">ver bar param</a><br>
+<!--<a th:href="@{/api/var/paz/mensaje de baz}">ver mix param</a><br>-->
+<a th:href="@{'/api/var/paz/'+${title}}">ver mix param</a><br>
+<a th:href="@{'/api/var/paz/'+'Hola que tal mix'}">ver mix param2</a><br>
 </body>
 </html>
